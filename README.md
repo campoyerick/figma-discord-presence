@@ -1,4 +1,4 @@
-# Figma Discord Presence
+# Figma Discord Presence (Versão traduzida)
 
 [![Build/release](https://github.com/bryanberger/figma-discord-presence/actions/workflows/deploy.yml/badge.svg)](https://github.com/bryanberger/figma-discord-presence/actions/workflows/deploy.yml)
 
