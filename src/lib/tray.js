@@ -23,21 +23,21 @@ class CustomTray extends EventEmitter {
       label: "Options",
       submenu: [
         {
-          label: "Hide filenames",
+          label: "Ocultar nomes de arquivos",
           type: "checkbox",
           checked: config.get("hideFilenames"),
           click: (menuItem) =>
             this.saveConfigAndUpdate("hideFilenames", menuItem.checked),
         },
         {
-          label: "Hide active/idle status",
+          label: "Ocultar status ativo/inativo",
           type: "checkbox",
           checked: config.get("hideStatus"),
           click: (menuItem) =>
             this.saveConfigAndUpdate("hideStatus", menuItem.checked),
         },
         {
-          label: 'Hide "View in Figma" button',
+          label: 'Ocultar o botão "Visualizar no Figma"',
           type: "checkbox",
           checked: config.get("hideViewButton"),
           click: (menuItem) =>
@@ -55,16 +55,12 @@ class CustomTray extends EventEmitter {
 
     { type: "separator" },
     {
-      label: "Check for Updates...",
-      click: () => this.emit(events.CHECK_FOR_UPDATES),
-    },
-    {
-      label: "Show Config",
+      label: "Mostrar configuração",
       click: () => shell.openPath(util.getAppDataPath()),
     },
     { type: "separator" },
     {
-      label: "Exit",
+      label: "Sair",
       click: () => this.emit(events.QUIT),
     },
   ];
@@ -72,7 +68,7 @@ class CustomTray extends EventEmitter {
   constructor(trayState) {
     super();
 
-    logger.debug("tray", "initalized");
+    logger.debug("tray", "✅ Inicializado");
 
     this.state = trayState;
 
@@ -99,13 +95,13 @@ class CustomTray extends EventEmitter {
     if (this.state.isDiscordReady) {
       menuTemplate = [
         {
-          label: `Connected to Discord`,
+          label: `Conectado ao Discord`,
           enabled: false,
           icon: iconOn,
         },
         { type: "separator" },
         {
-          label: "Disconnect from Discord",
+          label: "Desconectar-se do Discord",
           click: () => this.emit(events.DISCONNECT),
         },
       ].concat(this.baseMenuTemplate);
@@ -113,26 +109,26 @@ class CustomTray extends EventEmitter {
       if (this.state.isDiscordConnecting) {
         menuTemplate = [
           {
-            label: "Connecting to Discord",
+            label: "Conectando-se ao Discord",
             enabled: false,
             icon: iconOff,
           },
           { type: "separator" },
           {
-            label: "Stop connecting to Discord",
+            label: "Pare de se conectar ao Discord",
             click: () => this.emit(events.DISCONNECT),
           },
         ].concat(this.baseMenuTemplate);
       } else {
         menuTemplate = [
           {
-            label: "Not connected to Discord",
+            label: "Não conectado ao Discord",
             enabled: false,
             icon: iconOff,
           },
           { type: "separator" },
           {
-            label: "Connect to Discord",
+            label: "Conecte-se ao Discord",
             click: () => this.emit(events.CONNECT),
           },
         ].concat(this.baseMenuTemplate);

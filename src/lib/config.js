@@ -8,17 +8,17 @@ const retries = 10;
 
 const conf = convict({
   hideFilenames: {
-    doc: "Show or hide filenames",
+    doc: "Mostrar ou ocultar nomes de arquivos.",
     default: false,
     format: "Boolean",
   },
   hideStatus: {
-    doc: "Show or hide active/idle status",
+    doc: "Mostrar ou ocultar o status ativo/inativo.",
     default: false,
     format: "Boolean",
   },
   hideViewButton: {
-    doc: "Show or hide the view in figma button",
+    doc: "Mostrar ou ocultar a visualização no botão figma.",
     default: true,
     format: "Boolean",
   },
@@ -28,20 +28,6 @@ const conf = convict({
   //   format: "Boolean",
   // },
 });
-
-function load() {
-  return new Promise(async (resolve, reject) => {
-    try {
-      const json = util.getAppData("/config.json");
-      conf.loadFile(json);
-
-      logger.debug("config", "loaded!");
-      return resolve(conf.validate());
-    } catch (err) {
-      reject(err);
-    }
-  });
-}
 
 function save(times, init = false) {
   times = times || 0;
@@ -68,7 +54,7 @@ function save(times, init = false) {
       }
     }
   }
-  logger.debug("config", "saved!");
+  logger.debug("config", "salvo!");
 }
 
 function getAll() {
@@ -78,6 +64,5 @@ function getAll() {
 }
 
 module.exports = conf;
-module.exports.load = load;
 module.exports.save = save;
 module.exports.getAll = getAll;

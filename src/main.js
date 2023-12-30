@@ -33,13 +33,11 @@ if (process.platform === "darwin") app.dock.hide();
 
 app
   .whenReady()
-  .then(() => updater.update())
   .then(() => config.save(0, true))
-  .then(() => config.load())
   .then(() => (tray = new CustomTray(state)))
   .then(() => (activity = new Activity()))
   .then(() => registerEvents())
-  .then(() => logger.debug("main", "initalized!"))
+  .then(() => logger.debug("main", "✅ inicializado!"))
   .catch((err) => logger.error("main", err.message));
 
 function registerEvents() {
